@@ -12,5 +12,5 @@ Expand-Archive $toolsdir\terraform\terraform.zip $toolsdir\terraform
 Get-ChildItem $toolsdir -Recurse -File -Filter *.zip|rm
 [Environment]::SetEnvironmentVariable(
     "Path",
-    [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";C:\tools\terraform;c:\tools\packer",
+    [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";$toolsdir\terraform;$toolsdir\packer",
     [EnvironmentVariableTarget]::Machine)
