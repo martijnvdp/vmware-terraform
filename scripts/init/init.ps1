@@ -10,13 +10,13 @@ Expand-Archive $toolsdir\packer\packer.zip $toolsdir\packer
 curl $terraformurl -o $toolsdir\terraform\terraform.zip 
 Expand-Archive $toolsdir\terraform\terraform.zip $toolsdir\terraform
 Get-ChildItem $toolsdir -Recurse -File -Filter *.zip|rm
-if (!$env:path -contains "$toolsdir\terraform"){
+if ($env:path -notlike "*$toolsdir\terraform*"){
 [Environment]::SetEnvironmentVariable(
     "Path",
     [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";$toolsdir\terraform",
     [EnvironmentVariableTarget]::Machine)
 }
-if (!$env:path -contains "$toolsdir\packer"){
+if ($env:path -notlike "*$toolsdir\packer*"){
     [Environment]::SetEnvironmentVariable(
         "Path",
         [Environment]::GetEnvironmentVariable("Path", [EnvironmentVariableTarget]::Machine) + ";$toolsdir\packer",
